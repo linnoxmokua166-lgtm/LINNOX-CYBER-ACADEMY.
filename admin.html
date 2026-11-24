@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINNOX Cyber Academy | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>LINNOX CYBER ACADEMY</h1>
+        <p>Admin Control Panel</p>
+    </div>
+    <button id="logoutBtn">Logout</button>
+</header>
+
+<main>
+    <section class="welcome">
+        <h2>Admin Dashboard</h2>
+        <p id="message">Checking administrator access...</p>
+    </section>
+
+    <section>
+        <h2>Quiz Statistics</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <p>Total Attempts</p>
+                <strong id="totalAttempts">0</strong>
+            </div>
+            <div class="stat-card">
+                <p>Passes</p>
+                <strong id="totalPasses">0</strong>
+            </div>
+            <div class="stat-card">
+                <p>Failures</p>
+                <strong id="totalFailures">0</strong>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Student Performance Overview</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <p>Total Students</p>
+                <strong id="totalStudents">0</strong>
+            </div>
+            <div class="stat-card">
+                <p>Average Score</p>
+                <strong id="averageScore">0%</strong>
+            </div>
+            <div class="stat-card">
+                <p>Highest Score</p>
+                <strong id="highestScore">0%</strong>
+            </div>
+            <div class="stat-card">
+                <p>Overall Pass Rate</p>
+                <strong id="passRate">0%</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section">
+        <h2>Student Quiz Results</h2>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by Student ID or Course..."
+        >
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Course</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="certificate-section">
+        <h2>Certificate Approval Centre</h2>
+        <p class="section-description">
+            Review student requests and approve or reject course certificates.
+        </p>
+
+        <div class="stats">
+            <div class="stat-card">
+                <p>Pending Requests</p>
+                <strong id="pendingCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <p>Approved Requests</p>
+                <strong id="approvedCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <p>Rejected Requests</p>
+                <strong id="rejectedCount">0</strong>
+            </div>
+        </div>
+
+        <div id="certificateMessage" class="certificate-message">
+            Loading certificate requests...
+        </div>
+
+        <div class="table-container">
+            <table class="certificate-table">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Student ID</th>
+                        <th>Course</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>Certificate ID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="certificateRequestsTable"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>

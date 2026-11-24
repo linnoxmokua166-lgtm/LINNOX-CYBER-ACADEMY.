@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | LINNOX CYBER ACADEMY</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #050b08;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-box {
+            width: 100%;
+            max-width: 430px;
+            background: #101a14;
+            border: 1px solid #1caa60;
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: 0 0 25px #08783b33;
+        }
+
+        h1 {
+            color: #20e879;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            background: #07100b;
+            border: 1px solid #286442;
+            border-radius: 7px;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #20e879;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 24px;
+            background: #20e879;
+            color: #061109;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #12c967;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 18px;
+            text-align: center;
+            color: #20e879;
+            line-height: 1.5;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #aaa;
+        }
+
+        a {
+            color: #20e879;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-box">
+
+        <h1>LINNOX CYBER ACADEMY</h1>
+
+        <p class="subtitle">Create your learning account</p>
+
+        <form id="registerForm">
+
+            <label for="fullName">Full Name</label>
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                minlength="8"
+                required
+            >
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm your password"
+                minlength="8"
+                required
+            >
+
+            <button type="submit" id="registerButton">
+                CREATE ACCOUNT
+            </button>
+
+        </form>
+
+        <p id="message" role="status"></p>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="login.html">Login here</a>
+        </p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const message = document.getElementById("message");
+        const button = document.getElementById("registerButton");
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                message.textContent = "Your passwords do not match.";
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = "CREATING ACCOUNT...";
+            message.textContent = "";
+
+            try {
+                const { data, error } = await supabaseClient.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: fullName
+                        }
+                    }
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                message.textContent =
+                    "Registration submitted! Check your email if confirmation is required.";
+
+                form.reset();
+
+            } catch (error) {
+                message.textContent = error.message;
+            } finally {
+                button.disabled = false;
+                button.textContent = "CREATE ACCOUNT";
+            }
+        });
+    </script>
+
+</body>
+</html>

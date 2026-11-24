@@ -1,0 +1,209 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: #e5f7ff;
+    min-height: 100vh;
+}
+
+header {
+    background: #0d1b2a;
+    padding: 25px 5%;
+    border-bottom: 1px solid #00ff99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    color: #00ff99;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #b8cbd8;
+    margin-top: 8px;
+}
+
+button {
+    background: #00ff99;
+    color: #07111f;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+main {
+    padding: 35px 5%;
+    max-width: 1500px;
+    margin: auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+.welcome p {
+    color: #00ff99;
+    margin-top: 10px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: #102438;
+    border: 1px solid #254257;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.stat-card p {
+    color: #d7e6f0;
+}
+
+.stat-card strong {
+    display: block;
+    color: #00ff99;
+    font-size: 32px;
+    margin-top: 15px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #254257;
+    background: #102438;
+    color: white;
+    font-size: 15px;
+}
+
+#searchInput:focus {
+    outline: 2px solid #00ff99;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+    background: #102438;
+}
+
+thead {
+    background: #00cc88;
+    color: #07111f;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #254257;
+    overflow-wrap: anywhere;
+}
+
+tbody tr:hover {
+    background: #19364c;
+}
+
+.status-pass,
+.status-approved {
+    color: #00ff99;
+    font-weight: bold;
+}
+
+.status-fail,
+.status-rejected {
+    color: #ff7777;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #ffd166;
+    font-weight: bold;
+}
+
+.section-description {
+    color: #b8cbd8;
+    margin: -8px 0 20px;
+    line-height: 1.6;
+}
+
+.certificate-section {
+    background: #0d1b2a;
+    border: 1px solid #254257;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.certificate-message {
+    color: #00ff99;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.certificate-table {
+    min-width: 1050px;
+}
+
+.approve-button {
+    background: #00ff99;
+    padding: 9px 13px;
+    margin: 3px;
+}
+
+.reject-button {
+    background: #ff7777;
+    color: #07111f;
+    padding: 9px 13px;
+    margin: 3px;
+}
+
+@media (max-width: 600px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    main {
+        padding: 25px 4%;
+    }
+
+    section h2 {
+        font-size: 20px;
+    }
+
+    .certificate-section {
+        padding: 15px;
+    }
+}

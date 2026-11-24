@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity Fundamentals | LINNOX CYBER ACADEMY</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
+    line-height: 1.7;
+}
+
+header, footer {
+    background: #102238;
+    padding: 22px;
+    border-bottom: 2px solid #00d68f;
+}
+
+header h1, h2 { color: #00d68f; }
+header h1 { margin: 0; }
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 25px;
+}
+
+.welcome, .lesson {
+    background: #102238;
+    padding: 25px;
+    margin-bottom: 22px;
+    border-radius: 12px;
+    border: 1px solid #203a52;
+}
+
+.highlight { color: #00d68f; font-weight: bold; }
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.navigation a {
+    color: #00d68f;
+    text-decoration: none;
+    border: 1px solid #00d68f;
+    padding: 10px 16px;
+    border-radius: 7px;
+}
+
+.question {
+    padding: 15px 0;
+    border-bottom: 1px solid #34506a;
+}
+
+.question label {
+    display: block;
+    padding: 6px;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #00d68f;
+}
+
+button {
+    background: #00d68f;
+    color: #07111f;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+button:hover { background: #00b879; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.secondary, .completed-button {
+    background: #203a52;
+    color: white;
+    margin-left: 8px;
+}
+
+.completed-button {
+    background: #075c45;
+    color: white;
+}
+
+.progress-track {
+    background: #203a52;
+    height: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background: #00d68f;
+    transition: width 0.3s;
+}
+
+#quizResult {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 10px;
+    background: #071a2a;
+    display: none;
+}
+
+.success { color: #00d68f; }
+.error { color: #ff7676; }
+
+footer {
+    text-align: center;
+    color: #b7c5d3;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .container { padding: 15px; }
+    .lesson { padding: 18px; }
+    button { width: 100%; margin-left: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>LINNOX CYBER ACADEMY</h1>
+    <p>Professional Cybersecurity Learning Platform</p>
+</header>
+
+<main class="container">
+
+<section class="welcome">
+    <h2>Cybersecurity Fundamentals</h2>
+    <p>Welcome to your first cybersecurity course.</p>
+    <p>Learn the basic principles of cybersecurity and how to stay safe online.</p>
+    <p class="highlight">Course Module: 01 | Beginner Level</p>
+    <p id="studentStatus">Checking student account...</p>
+</section>
+
+<nav class="navigation">
+    <a href="dashboard.html">← Student Dashboard</a>
+    <a href="#lessons">Lessons</a>
+    <a href="#courseProgress">My Progress</a>
+    <a href="#quiz">Take Quiz</a>
+</nav>
+
+<section class="lesson" id="courseProgress">
+    <h2>Your Course Progress</h2>
+    <p id="progressText">Loading your progress...</p>
+
+    <div class="progress-track">
+        <div id="progressBar"></div>
+    </div>
+
+    <p id="progressCount">0 of 5 lessons completed</p>
+    <p id="progressMessage"></p>
+</section>
+
+<section id="lessons">
+
+<article class="lesson">
+    <h2>Lesson 1: What is Cybersecurity?</h2>
+    <p>Cybersecurity is the practice of protecting computers, networks, applications and information from digital threats.</p>
+    <ul>
+        <li>Personal information</li>
+        <li>Business information</li>
+        <li>Computer systems</li>
+        <li>Online accounts</li>
+        <li>Digital communication</li>
+    </ul>
+    <button class="complete-button" data-lesson="1">Mark Lesson 1 Complete</button>
+</article>
+
+<article class="lesson">
+    <h2>Lesson 2: The Three Security Principles</h2>
+    <h3 class="highlight">1. Confidentiality</h3>
+    <p>Ensuring information is only accessible to authorized people.</p>
+    <h3 class="highlight">2. Integrity</h3>
+    <p>Keeping information accurate, complete and trustworthy.</p>
+    <h3 class="highlight">3. Availability</h3>
+    <p>Ensuring systems and information can be accessed when needed.</p>
+    <button class="complete-button" data-lesson="2">Mark Lesson 2 Complete</button>
+</article>
+
+<article class="lesson">
+    <h2>Lesson 3: Common Cybersecurity Threats</h2>
+    <ul>
+        <li><strong>Phishing:</strong> Deceptive messages designed to trick people.</li>
+        <li><strong>Malware:</strong> Software designed to cause harm or unwanted activity.</li>
+        <li><strong>Ransomware:</strong> Malware that locks or encrypts information and demands payment.</li>
+        <li><strong>Social engineering:</strong> Manipulating people into revealing information.</li>
+        <li><strong>Data breaches:</strong> Unauthorized exposure of private information.</li>
+    </ul>
+    <button class="complete-button" data-lesson="3">Mark Lesson 3 Complete</button>
+</article>
+
+<article class="lesson">
+    <h2>Lesson 4: Basic Online Safety</h2>
+    <ul>
+        <li>Use strong, unique passwords.</li>
+        <li>Enable two-factor authentication.</li>
+        <li>Keep your software updated.</li>
+        <li>Avoid suspicious links and attachments.</li>
+        <li>Never share your login credentials.</li>
+        <li>Back up important information.</li>
+    </ul>
+    <button class="complete-button" data-lesson="4">Mark Lesson 4 Complete</button>
+</article>
+
+<article class="lesson">
+    <h2>Lesson 5: Ethical Cybersecurity</h2>
+    <p>Ethical cybersecurity means protecting systems responsibly and respecting other people's privacy.</p>
+    <p>Always obtain permission before testing a computer system, website or network.</p>
+    <p>Never access another person's accounts or systems without authorization.</p>
+    <button class="complete-button" data-lesson="5">Mark Lesson 5 Complete</button>
+</article>
+
+</section>
+
+<section class="lesson" id="quiz">
+    <h2>Final Assessment: Lesson 1</h2>
+    <p>Answer all five questions. Each correct answer earns 20 points. You need 80% to pass.</p>
+
+    <form id="quizForm">
+
+        <div class="question">
+            <p><strong>1. What is cybersecurity?</strong></p>
+            <label><input type="radio" name="q1" value="a" required> A. Protecting computers and information from digital threats</label>
+            <label><input type="radio" name="q1" value="b"> B. Playing computer games</label>
+            <label><input type="radio" name="q1" value="c"> C. Designing websites only</label>
+        </div>
+
+        <div class="question">
+            <p><strong>2. Which principle keeps information private?</strong></p>
+            <label><input type="radio" name="q2" value="a" required> A. Availability</label>
+            <label><input type="radio" name="q2" value="b"> B. Confidentiality</label>
+            <label><input type="radio" name="q2" value="c"> C. Integrity</label>
+        </div>
+
+        <div class="question">
+            <p><strong>3. What does integrity mean?</strong></p>
+            <label><input type="radio" name="q3" value="a" required> A. Keeping information accurate and trustworthy</label>
+            <label><input type="radio" name="q3" value="b"> B. Making information public</label>
+            <label><input type="radio" name="q3" value="c"> C. Turning off a computer</label>
+        </div>
+
+        <div class="question">
+            <p><strong>4. Which is a good online safety practice?</strong></p>
+            <label><input type="radio" name="q4" value="a" required> A. Sharing your password</label>
+            <label><input type="radio" name="q4" value="b"> B. Clicking every link</label>
+            <label><input type="radio" name="q4" value="c"> C. Using strong, unique passwords</label>
+        </div>
+
+        <div class="question">
+            <p><strong>5. What does availability mean?</strong></p>
+            <label><input type="radio" name="q5" value="a" required> A. Keeping information secret</label>
+            <label><input type="radio" name="q5" value="b"> B. Making systems accessible when needed</label>
+            <label><input type="radio" name="q5" value="c"> C. Deleting information</label>
+        </div>
+
+        <button type="submit" id="submitButton">Submit My Quiz</button>
+        <button type="reset" class="secondary">Reset Answers</button>
+    </form>
+
+    <div id="quizResult" aria-live="polite"></div>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 LINNOX CYBER ACADEMY</p>
+    <p>Learn. Practice. Protect.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+const quizForm = document.getElementById("quizForm");
+const quizResult = document.getElementById("quizResult");
+const submitButton = document.getElementById("submitButton");
+
+const correctAnswers = {
+    q1: "a",
+    q2: "b",
+    q3: "a",
+    q4: "c",
+    q5: "b"
+};
+
+const COURSE_NAME = "Cybersecurity Fundamentals";
+const TOTAL_LESSONS = 5;
+
+let currentStudent = null;
+let completedLessons = new Set();
+
+async function checkStudent() {
+    try {
+        const { data, error } = await supabaseClient.auth.getUser();
+
+        if (error || !data.user) {
+            document.getElementById("studentStatus").innerHTML =
+                'Please <a href="login.html">sign in</a> before using this course.';
+            submitButton.disabled = true;
+            document.querySelectorAll(".complete-button").forEach(button => {
+                button.disabled = true;
+            });
+            document.getElementById("progressText").textContent =
+                "Sign in to save your course progress.";
+            return;
+        }
+
+        currentStudent = data.user;
+
+        document.getElementById("studentStatus").textContent =
+            "Signed in as " + currentStudent.email;
+
+        submitButton.disabled = false;
+
+        await loadProgress();
+
+    } catch (error) {
+        document.getElementById("studentStatus").textContent =
+            "Unable to check your account. Please refresh the page.";
+        submitButton.disabled = true;
+    }
+}
+
+async function loadProgress() {
+    const { data, error } = await supabaseClient
+        .from("course_progress")
+        .select("lesson_id, completed")
+        .eq("student_id", currentStudent.id)
+        .eq("course_name", COURSE_NAME);
+
+    if (error) {
+        document.getElementById("progressText").textContent =
+            "Could not load progress: " + error.message;
+        return;
+    }
+
+    completedLessons = new Set(
+        data.filter(item => item.completed).map(item => item.lesson_id)
+    );
+
+    updateProgressDisplay();
+}
+
+function updateProgressDisplay() {
+    const count = completedLessons.size;
+    const percentage = Math.round((count / TOTAL_LESSONS) * 100);
+
+    document.getElementById("progressBar").style.width = percentage + "%";
+    document.getElementById("progressText").textContent =
+        "Course completion: " + percentage + "%";
+
+    document.getElementById("progressCount").textContent =
+        count + " of " + TOTAL_LESSONS + " lessons completed";
+
+    document.getElementById("progressMessage").textContent =
+        count === TOTAL_LESSONS
+            ? "Congratulations! You have completed all five lessons."
+            : "Keep learning. Complete the remaining lessons to finish this course.";
+
+    document.querySelectorAll(".complete-button").forEach(button => {
+        const lessonId = Number(button.dataset.lesson);
+        const isComplete = completedLessons.has(lessonId);
+
+        button.textContent = isComplete
+            ? "✓ Lesson " + lessonId + " Completed"
+            : "Mark Lesson " + lessonId + " Complete";
+
+        button.classList.toggle("completed-button", isComplete);
+    });
+}
+
+document.querySelectorAll(".complete-button").forEach(button => {
+    button.addEventListener("click", async function() {
+        if (!currentStudent) {
+            alert("Please sign in first.");
+            return;
+        }
+
+        const lessonId = Number(this.dataset.lesson);
+
+        if (completedLessons.has(lessonId)) {
+            alert("You have already completed this lesson.");
+            return;
+        }
+
+        this.disabled = true;
+        this.textContent = "Saving progress...";
+
+        try {
+            const { error } = await supabaseClient
+                .from("course_progress")
+                .upsert({
+                    student_id: currentStudent.id,
+                    course_name: COURSE_NAME,
+                    lesson_id: lessonId,
+                    completed: true,
+                    updated_at: new Date().toISOString()
+                }, {
+                    onConflict: "student_id,course_name,lesson_id"
+                });
+
+            if (error) throw error;
+
+            completedLessons.add(lessonId);
+            updateProgressDisplay();
+
+        } catch (error) {
+            alert("Could not save progress: " + error.message);
+            this.disabled = false;
+            updateProgressDisplay();
+        }
+    });
+});
+
+quizForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!currentStudent) {
+        alert("Please sign in before submitting your quiz.");
+        return;
+    }
+
+    let score = 0;
+
+    for (const question in correctAnswers) {
+        const selected = quizForm.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (selected && selected.value === correctAnswers[question]) {
+            score++;
+        }
+    }
+
+    const percentage = score * 20;
+    const status = percentage >= 80 ? "PASS" : "FAIL";
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Saving your result...";
+
+    quizResult.style.display = "block";
+    quizResult.innerHTML =
+        "<p>Submitting your result to LINNOX CYBER ACADEMY...</p>";
+
+    const resultRecord = {
+        student_id: currentStudent.id,
+        course_name: COURSE_NAME,
+        score: score,
+        percentage: percentage,
+        status: status
+    };
+
+    try {
+        const { error } = await supabaseClient
+            .from("quiz_results")
+            .insert([resultRecord]);
+
+        if (error) throw error;
+
+        quizResult.innerHTML = `
+            <h3 class="success">${status === "PASS" ? "Congratulations! You passed!" : "Keep Learning!"}</h3>
+            <p>Your score: <strong>${score} / 5</strong></p>
+            <p>Your percentage: <strong>${percentage}%</strong></p>
+            <p>Result: <strong>${status}</strong></p>
+            <p class="success">Your quiz result has been saved successfully!</p>
+            <button type="button" onclick="tryAgain()">Try Again</button>
+        `;
+
+    } catch (error) {
+        quizResult.innerHTML = `
+            <h3 class="error">Your result could not be saved.</h3>
+            <p>${escapeText(error.message)}</p>
+            <p>Please check your internet connection and try again.</p>
+        `;
+    }
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit My Quiz";
+
+    quizResult.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+function escapeText(value) {
+    const element = document.createElement("div");
+    element.textContent = value;
+    return element.innerHTML;
+}
+
+function tryAgain() {
+    quizForm.reset();
+    quizResult.style.display = "none";
+    quizResult.innerHTML = "";
+}
+
+quizForm.addEventListener("reset", function() {
+    quizResult.style.display = "none";
+    quizResult.innerHTML = "";
+});
+
+checkStudent();
+</script>
+
+</body>
+</html>

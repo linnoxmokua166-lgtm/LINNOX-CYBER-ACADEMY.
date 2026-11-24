@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINNOX CYBER ACADEMY - Certificate</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            min-height: 100vh;
+            background: #07111f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .top {
+            margin-bottom: 25px;
+        }
+
+        .top h1 {
+            color: #39e75f;
+            margin-bottom: 8px;
+        }
+
+        .top p {
+            color: #aab7c8;
+        }
+
+        .certificate {
+            background: #ffffff;
+            color: #172235;
+            padding: 55px 35px;
+            border: 10px double #c49b35;
+            outline: 3px solid #c49b35;
+            outline-offset: -19px;
+            min-height: 570px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .academy {
+            color: #10233d;
+            font-size: 27px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .certificate h2 {
+            color: #b28a28;
+            font-size: 38px;
+            margin: 35px 0 15px;
+        }
+
+        .certificate p {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .student-name {
+            color: #10233d;
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: bold;
+            border-bottom: 2px solid #c49b35;
+            padding: 8px 20px;
+            margin: 15px 0;
+        }
+
+        .course-name {
+            font-size: 23px;
+            font-weight: bold;
+            color: #10233d;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            width: 85%;
+            margin-top: 45px;
+            gap: 20px;
+        }
+
+        .detail {
+            border-top: 1px solid #777;
+            padding-top: 10px;
+            font-size: 13px;
+        }
+
+        .status {
+            margin: 25px auto;
+            padding: 20px;
+            max-width: 650px;
+            background: #14243a;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+
+        .status.success {
+            border: 1px solid #39e75f;
+        }
+
+        .status.error {
+            border: 1px solid #ff7373;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        button, .back-link {
+            display: inline-block;
+            padding: 13px 22px;
+            margin: 7px;
+            border: none;
+            border-radius: 7px;
+            background: #39e75f;
+            color: #07111f;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-link {
+            background: #263b55;
+            color: #ffffff;
+        }
+
+        #certificate {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .certificate {
+                padding: 45px 20px;
+                min-height: 500px;
+            }
+
+            .certificate h2 {
+                font-size: 28px;
+            }
+
+            .student-name {
+                font-size: 25px;
+            }
+
+            .academy {
+                font-size: 19px;
+            }
+
+            .details {
+                width: 100%;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .top, .status, .actions {
+                display: none !important;
+            }
+
+            .container {
+                max-width: none;
+            }
+
+            #certificate {
+                display: flex !important;
+            }
+
+            .certificate {
+                min-height: 95vh;
+                border: 10px double #c49b35;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            @page {
+                size: landscape;
+                margin: 10mm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top">
+        <h1>LINNOX CYBER ACADEMY</h1>
+        <p>Your learning achievements</p>
+    </div>
+
+    <div id="status" class="status">
+        Checking your course completion...
+    </div>
+
+    <div id="certificate" class="certificate">
+
+        <div class="academy">LINNOX CYBER ACADEMY</div>
+
+        <h2>CERTIFICATE</h2>
+
+        <p>OF SUCCESSFUL COMPLETION</p>
+
+        <p>This certificate is proudly presented to</p>
+
+        <div id="studentName" class="student-name">
+            Student Name
+        </div>
+
+        <p>
+            In recognition of successfully completing the course
+        </p>
+
+        <div class="course-name">
+            Cybersecurity Fundamentals
+        </div>
+
+        <p>
+            Demonstrating successful completion of all five lessons
+            and achieving the required quiz score.
+        </p>
+
+        <div class="details">
+
+            <div class="detail">
+                <strong>Date Awarded</strong>
+                <div id="awardDate"></div>
+            </div>
+
+            <div class="detail">
+                <strong>Certificate ID</strong>
+                <div id="certificateId"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="actions">
+        <button id="printButton" onclick="window.print()" style="display:none;">
+            Print / Save as PDF
+        </button>
+
+        <a class="back-link" href="dashboard.html">
+            Back to Dashboard
+        </a>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+    const COURSE_NAME = "Cybersecurity Fundamentals";
+    const REQUIRED_LESSONS = [1, 2, 3, 4, 5];
+
+    async function checkCertificateEligibility() {
+        const statusBox = document.getElementById("status");
+
+        try {
+            const { data: userData, error: authError } =
+                await supabaseClient.auth.getUser();
+
+            if (authError || !userData.user) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const user = userData.user;
+
+            // Check completed lessons
+            const { data: progress, error: progressError } =
+                await supabaseClient
+                    .from("course_progress")
+                    .select("lesson_id")
+                    .eq("student_id", user.id)
+                    .eq("course_name", COURSE_NAME)
+                    .eq("completed", true);
+
+            if (progressError) throw progressError;
+
+            const completedLessons = new Set(
+                (progress || []).map(item => Number(item.lesson_id))
+            );
+
+            const allLessonsComplete = REQUIRED_LESSONS.every(
+                id => completedLessons.has(id)
+            );
+
+            // Check the student's latest quiz attempt
+            const { data: quizResults, error: quizError } =
+                await supabaseClient
+                    .from("quiz_results")
+                    .select("score, percentage, status, completed_at")
+                    .eq("student_id", user.id)
+                    .eq("course_name", COURSE_NAME)
+                    .order("completed_at", { ascending: false })
+                    .limit(1);
+
+            if (quizError) throw quizError;
+
+            const latestQuiz = quizResults && quizResults.length
+                ? quizResults[0]
+                : null;
+
+            const quizPassed = latestQuiz &&
+                latestQuiz.status === "PASS" &&
+                latestQuiz.percentage >= 80;
+
+            if (!allLessonsComplete || !quizPassed) {
+                let message = "Your certificate is not available yet.<br><br>";
+
+                if (!allLessonsComplete) {
+                    const remaining = REQUIRED_LESSONS.filter(
+                        id => !completedLessons.has(id)
+                    );
+
+                    message += "Lessons still to complete: " +
+                        remaining.join(", ") + ".<br>";
+                }
+
+                if (!quizPassed) {
+                    message += "You still need to pass the quiz with at least 80%.";
+                }
+
+                statusBox.innerHTML = message;
+                statusBox.className = "status error";
+                return;
+            }
+
+            // Display certificate
+            const studentName =
+                user.user_metadata?.full_name ||
+                user.user_metadata?.name ||
+                user.email;
+
+            const today = new Date();
+
+            document.getElementById("studentName").textContent = studentName;
+
+            document.getElementById("awardDate").textContent =
+                today.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+            document.getElementById("certificateId").textContent =
+                "LCA-CF-" + user.id.substring(0, 8).toUpperCase();
+
+            document.getElementById("certificate").style.display = "flex";
+
+            statusBox.textContent =
+                "Congratulations! You have completed the course and passed the quiz.";
+
+            statusBox.className = "status success";
+
+            document.getElementById("printButton").style.display =
+                "inline-block";
+
+        } catch (error) {
+            console.error(error);
+
+            statusBox.textContent =
+                "We could not verify your certificate. Please refresh the page or try again.";
+
+            statusBox.className = "status error";
+        }
+    }
+
+    checkCertificateEligibility();
+</script>
+
+</body>
+</html>

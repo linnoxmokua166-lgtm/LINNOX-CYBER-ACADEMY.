@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard | LINNOX CYBER ACADEMY</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    background: #102238;
+    padding: 25px 5%;
+    border-bottom: 2px solid #00d68f;
+}
+
+header h1 {
+    color: #00d68f;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px;
+}
+
+.welcome, .section, .stat-card, .course {
+    background: #102238;
+    border: 1px solid #203a52;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.welcome { margin-bottom: 25px; }
+
+.welcome-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.welcome-avatar {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #00d68f;
+    background: #203a52;
+    display: none;
+}
+
+h2, h3 { color: #00d68f; }
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.navigation a, .course a, .certificate-link {
+    display: inline-block;
+    background: #00d68f;
+    color: #07111f;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.navigation a:hover, .course a:hover, .certificate-link:hover {
+    background: #00b879;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    margin: 5px 0;
+}
+
+.stat-card p, .muted { color: #b7c5d3; }
+
+.courses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.section { margin-top: 25px; }
+
+.table-wrapper { overflow-x: auto; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th, td {
+    padding: 13px;
+    border-bottom: 1px solid #34506a;
+    text-align: left;
+}
+
+th { color: #00d68f; }
+
+.pass { color: #00d68f; font-weight: bold; }
+.fail { color: #ff7676; font-weight: bold; }
+
+button {
+    background: #00d68f;
+    color: #07111f;
+    border: none;
+    padding: 11px 17px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px 5px 5px 0;
+}
+
+button:hover { background: #00b879; }
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.remove-button { background: #ff7676; }
+.remove-button:hover { background: #e45d5d; }
+
+.profile-card {
+    background: #102238;
+    border: 1px solid #203a52;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #203a52;
+    border: 3px solid #00d68f;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.avatar-placeholder {
+    color: #00d68f;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.profile-card hr {
+    border: 0;
+    border-top: 1px solid #34506a;
+    margin: 20px 0;
+}
+
+.profile-card p { overflow-wrap: anywhere; }
+
+.progress-track {
+    background: #203a52;
+    height: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #00d68f;
+    transition: width 0.3s;
+}
+
+.lesson-progress-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    margin: 8px 0;
+    background: #071a2a;
+    border-radius: 7px;
+}
+
+.lesson-done {
+    color: #00d68f;
+    font-weight: bold;
+}
+
+.lesson-pending {
+    color: #b7c5d3;
+}
+
+.continue-link {
+    display: inline-block;
+    background: #00d68f;
+    color: #07111f;
+    padding: 11px 17px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.certificate-box {
+    background: #071a2a;
+    border: 1px solid #c49b35;
+    border-radius: 10px;
+    padding: 22px;
+    margin-top: 25px;
+}
+
+.certificate-box h3 {
+    color: #e5c36b;
+}
+
+.certificate-link {
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #102238;
+    color: #b7c5d3;
+    margin-top: 35px;
+}
+
+@media(max-width: 600px) {
+    .container { padding: 15px; }
+    header h1 { font-size: 23px; }
+
+    .lesson-progress-item {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>LINNOX CYBER ACADEMY</h1>
+    <p>Student Learning Dashboard</p>
+</header>
+
+<main class="container">
+
+<section class="welcome">
+    <div class="welcome-content">
+        <img id="welcomeAvatar" class="welcome-avatar" alt="Profile picture">
+        <div>
+            <h2>Welcome, <span id="studentName">Student</span>!</h2>
+            <p id="studentEmail" class="muted">Loading student account...</p>
+            <p id="accountStatus">Checking account...</p>
+        </div>
+    </div>
+</section>
+
+<nav class="navigation">
+    <a href="#overview">Overview</a>
+    <a href="#courses">My Courses</a>
+    <a href="#progress">My Progress</a>
+    <a href="#certificateSection">My Certificate</a>
+    <a href="#profile">My Profile</a>
+    <a href="#" id="logoutLink">Logout</a>
+</nav>
+
+<section id="overview">
+    <h2>Learning Overview</h2>
+
+    <div class="stats">
+        <div class="stat-card">
+            <p>Quizzes Completed</p>
+            <h3 id="totalQuizzes">0</h3>
+        </div>
+        <div class="stat-card">
+            <p>Average Score</p>
+            <h3 id="averageScore">0%</h3>
+        </div>
+        <div class="stat-card">
+            <p>Passed Quizzes</p>
+            <h3 id="passedQuizzes">0</h3>
+        </div>
+        <div class="stat-card">
+            <p>Failed Quizzes</p>
+            <h3 id="failedQuizzes">0</h3>
+        </div>
+    </div>
+</section>
+
+<section id="courses" class="section">
+    <h2>My Courses</h2>
+
+    <div class="courses">
+        <article class="course">
+            <h3>Cybersecurity Fundamentals</h3>
+            <p>Learn cybersecurity principles, threats and online safety.</p>
+            <a href="fundamentals.html">Start Learning</a>
+        </article>
+
+        <article class="course">
+            <h3>Ethical Hacking Concepts</h3>
+            <p>Learn ethical security testing and responsible cybersecurity.</p>
+            <a href="#progress">Coming Soon</a>
+        </article>
+
+        <article class="course">
+            <h3>Network Security</h3>
+            <p>Understand network protection and security principles.</p>
+            <a href="#progress">Coming Soon</a>
+        </article>
+
+        <article class="course">
+            <h3>Web Security</h3>
+            <p>Learn how websites protect users and information.</p>
+            <a href="#progress">Coming Soon</a>
+        </article>
+    </div>
+</section>
+
+<section id="progress" class="section">
+    <h2>My Learning Progress</h2>
+
+    <h3>Cybersecurity Fundamentals</h3>
+
+    <p id="courseProgressText" class="muted">
+        Loading course progress...
+    </p>
+
+    <div class="progress-track">
+        <div id="dashboardProgressBar" class="progress-fill"></div>
+    </div>
+
+    <p id="courseProgressCount">0 of 5 lessons completed</p>
+
+    <div id="lessonProgressList"></div>
+
+    <a href="fundamentals.html" class="continue-link">
+        Continue Learning
+    </a>
+
+    <div id="certificateSection" class="certificate-box">
+        <h3>My Certificate of Completion</h3>
+
+        <p>
+            Complete all five Cybersecurity Fundamentals lessons
+            and pass your quiz with at least 80% to qualify for
+            your certificate.
+        </p>
+
+        <a href="certificate.html" class="certificate-link">
+            View My Certificate
+        </a>
+
+        <p class="muted">
+            Your eligibility will be checked when you open the certificate page.
+        </p>
+    </div>
+
+    <hr style="border-color:#34506a;margin:22px 0;">
+
+    <h3>Quiz Results</h3>
+    <p id="loadingMessage" class="muted">Loading your quiz results...</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Score</th>
+                    <th>Percentage</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTable"></tbody>
+        </table>
+    </div>
+
+    <br>
+    <button id="refreshResultsBtn">Refresh Results</button>
+</section>
+
+<section id="profile" class="section">
+    <h2>My Student Profile</h2>
+
+    <div class="profile-card">
+
+        <div class="avatar-container">
+            <span class="avatar-placeholder" id="avatarPlaceholder">S</span>
+            <img id="profilePicture" alt="Student Profile Picture">
+        </div>
+
+        <h3 id="profileDisplayName">Student</h3>
+        <p id="profileDisplayEmail" class="muted">Loading email...</p>
+
+        <hr>
+
+        <h3>Manage Profile Picture</h3>
+
+        <input
+            type="file"
+            id="avatarInput"
+            accept="image/jpeg,image/png,image/webp"
+        >
+
+        <p class="muted">Choose a JPG, PNG or WebP image. Maximum size: 2 MB.</p>
+
+        <button type="button" id="uploadAvatarBtn">Save / Change Picture</button>
+        <button type="button" id="removeAvatarBtn" class="remove-button">
+            Remove Picture
+        </button>
+
+        <p id="avatarMessage" class="muted">
+            Your profile picture will appear here.
+        </p>
+
+        <hr>
+
+        <p><strong>Full Name:</strong> <span id="profileName">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+        <p><strong>Account:</strong> Registered Student</p>
+        <p><strong>Student ID:</strong> <span id="profileStudentId">Loading...</span></p>
+        <p><strong>Registration Date:</strong> <span id="registrationDate">Loading...</span></p>
+        <p><strong>Quizzes Completed:</strong> <span id="profileQuizCount">0</span></p>
+        <p><strong>Average Score:</strong> <span id="profileAverageScore">0%</span></p>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 LINNOX CYBER ACADEMY</p>
+    <p>Learn. Practice. Protect.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+let currentStudent = null;
+let currentAvatarPath = null;
+let previewUrl = null;
+
+const COURSE_NAME = "Cybersecurity Fundamentals";
+
+function displayAvatar(url) {
+    const picture = document.getElementById("profilePicture");
+    const welcome = document.getElementById("welcomeAvatar");
+    const placeholder = document.getElementById("avatarPlaceholder");
+
+    if (!url) {
+        picture.removeAttribute("src");
+        welcome.removeAttribute("src");
+        picture.style.display = "none";
+        welcome.style.display = "none";
+        placeholder.style.display = "block";
+        return;
+    }
+
+    picture.onload = () => {
+        picture.style.display = "block";
+        placeholder.style.display = "none";
+    };
+
+    picture.onerror = () => {
+        picture.style.display = "none";
+        placeholder.style.display = "block";
+    };
+
+    welcome.onload = () => {
+        welcome.style.display = "block";
+    };
+
+    welcome.onerror = () => {
+        welcome.style.display = "none";
+    };
+
+    picture.src = url;
+    welcome.src = url;
+}
+
+async function protectDashboard() {
+    try {
+        const { data, error } = await supabaseClient.auth.getUser();
+
+        if (error || !data.user) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        currentStudent = data.user;
+
+        const name = currentStudent.user_metadata?.full_name || "Student";
+        const email = currentStudent.email || "";
+
+        document.getElementById("studentName").textContent = name;
+        document.getElementById("studentEmail").textContent = email;
+        document.getElementById("profileName").textContent = name;
+        document.getElementById("profileEmail").textContent = email;
+        document.getElementById("profileDisplayName").textContent = name;
+        document.getElementById("profileDisplayEmail").textContent = email;
+
+        document.getElementById("profileStudentId").textContent =
+            currentStudent.id;
+
+        document.getElementById("avatarPlaceholder").textContent =
+            name.charAt(0).toUpperCase();
+
+        document.getElementById("registrationDate").textContent =
+            new Date(currentStudent.created_at).toLocaleDateString();
+
+        document.getElementById("accountStatus").textContent =
+            "Your account is connected successfully.";
+
+        currentAvatarPath =
+            currentStudent.user_metadata?.avatar_path || null;
+
+        displayAvatar(currentStudent.user_metadata?.avatar_url || null);
+
+        await Promise.all([
+            loadQuizResults(),
+            loadCourseProgress()
+        ]);
+
+    } catch (error) {
+        document.getElementById("accountStatus").textContent =
+            "Unable to load your dashboard. Please refresh.";
+    }
+}
+
+async function loadQuizResults() {
+    if (!currentStudent) return;
+
+    const loading = document.getElementById("loadingMessage");
+    const table = document.getElementById("resultsTable");
+
+    loading.textContent = "Loading your quiz results...";
+
+    const { data, error } = await supabaseClient
+        .from("quiz_results")
+        .select("course_name, score, percentage, status, completed_at")
+        .eq("student_id", currentStudent.id)
+        .order("completed_at", { ascending: false });
+
+    if (error) {
+        loading.textContent = "Could not load results: " + error.message;
+        return;
+    }
+
+    const results = data || [];
+    const total = results.length;
+    const passed = results.filter(r => r.status === "PASS").length;
+    const failed = results.filter(r => r.status === "FAIL").length;
+
+    const average = total
+        ? Math.round(results.reduce((sum, r) =>
+            sum + Number(r.percentage), 0) / total)
+        : 0;
+
+    document.getElementById("totalQuizzes").textContent = total;
+    document.getElementById("averageScore").textContent = average + "%";
+    document.getElementById("passedQuizzes").textContent = passed;
+    document.getElementById("failedQuizzes").textContent = failed;
+    document.getElementById("profileQuizCount").textContent = total;
+    document.getElementById("profileAverageScore").textContent = average + "%";
+
+    if (!total) {
+        table.innerHTML =
+            "<tr><td colspan='5'>No quiz results yet.</td></tr>";
+    } else {
+        table.innerHTML = results.map(r => `
+            <tr>
+                <td>${escapeHTML(r.course_name)}</td>
+                <td>${Number(r.score)} / 5</td>
+                <td>${Number(r.percentage)}%</td>
+                <td class="${r.status === "PASS" ? "pass" : "fail"}">
+                    ${escapeHTML(r.status)}
+                </td>
+                <td>${new Date(r.completed_at).toLocaleString()}</td>
+            </tr>
+        `).join("");
+    }
+
+    loading.textContent = "Your quiz results are up to date.";
+}
+
+async function loadCourseProgress() {
+    if (!currentStudent) return;
+
+    const progressText =
+        document.getElementById("courseProgressText");
+
+    const progressBar =
+        document.getElementById("dashboardProgressBar");
+
+    const progressCount =
+        document.getElementById("courseProgressCount");
+
+    const lessonList =
+        document.getElementById("lessonProgressList");
+
+    const lessons = [
+        "What is Cybersecurity?",
+        "The Three Security Principles",
+        "Common Cybersecurity Threats",
+        "Basic Online Safety",
+        "Ethical Cybersecurity"
+    ];
+
+    progressText.textContent = "Loading your course progress...";
+
+    const { data, error } = await supabaseClient
+        .from("course_progress")
+        .select("lesson_id, completed")
+        .eq("student_id", currentStudent.id)
+        .eq("course_name", COURSE_NAME);
+
+    if (error) {
+        progressText.textContent =
+            "Could not load course progress: " + error.message;
+        lessonList.innerHTML = "";
+        return;
+    }
+
+    const completed = new Set(
+        (data || [])
+            .filter(item => item.completed)
+            .map(item => Number(item.lesson_id))
+    );
+
+    const completedCount = completed.size;
+    const percentage = Math.round(
+        (completedCount / lessons.length) * 100
+    );
+
+    progressText.textContent =
+        "Course completion: " + percentage + "%";
+
+    progressBar.style.width = percentage + "%";
+
+    progressCount.textContent =
+        completedCount + " of " + lessons.length +
+        " lessons completed";
+
+    lessonList.innerHTML = lessons.map((lesson, index) => {
+        const isDone = completed.has(index + 1);
+
+        return `
+            <div class="lesson-progress-item">
+                <span>Lesson ${index + 1}: ${lesson}</span>
+                <span class="${isDone ? "lesson-done" : "lesson-pending"}">
+                    ${isDone ? "✓ Completed" : "Not completed"}
+                </span>
+            </div>
+        `;
+    }).join("");
+
+    if (completedCount === lessons.length) {
+        progressText.textContent =
+            "Congratulations! You have completed this course.";
+    }
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+async function uploadAvatar() {
+    if (!currentStudent) return;
+
+    const input = document.getElementById("avatarInput");
+    const message = document.getElementById("avatarMessage");
+    const button = document.getElementById("uploadAvatarBtn");
+    const file = input.files[0];
+
+    if (!file) {
+        message.textContent = "Please choose a picture first.";
+        return;
+    }
+
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+        message.textContent = "Choose a JPG, PNG or WebP picture.";
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        message.textContent = "Your picture must be 2 MB or smaller.";
+        return;
+    }
+
+    button.disabled = true;
+    message.textContent = "Saving your picture...";
+
+    const filePath = currentStudent.id + "/profile-picture";
+
+    try {
+        const { error: uploadError } = await supabaseClient.storage
+            .from("student-avatars")
+            .upload(filePath, file, {
+                upsert: true,
+                contentType: file.type,
+                cacheControl: "0"
+            });
+
+        if (uploadError) throw uploadError;
+
+        const { data } = supabaseClient.storage
+            .from("student-avatars")
+            .getPublicUrl(filePath);
+
+        const avatarUrl = data.publicUrl + "?updated=" + Date.now();
+
+        const { error: updateError } = await supabaseClient.auth.updateUser({
+            data: {
+                avatar_url: avatarUrl,
+                avatar_path: filePath
+            }
+        });
+
+        if (updateError) throw updateError;
+
+        currentStudent.user_metadata.avatar_url = avatarUrl;
+        currentStudent.user_metadata.avatar_path = filePath;
+        currentAvatarPath = filePath;
+
+        displayAvatar(avatarUrl);
+
+        message.textContent =
+            "Your profile picture was saved successfully.";
+
+        input.value = "";
+
+    } catch (error) {
+        message.textContent = "Upload failed: " + error.message;
+    } finally {
+        button.disabled = false;
+    }
+}
+
+async function removeAvatar() {
+    if (!currentStudent || !currentAvatarPath) {
+        document.getElementById("avatarMessage").textContent =
+            "There is no saved profile picture to remove.";
+        return;
+    }
+
+    if (!confirm("Are you sure you want to remove your profile picture?")) {
+        return;
+    }
+
+    const button = document.getElementById("removeAvatarBtn");
+    const message = document.getElementById("avatarMessage");
+
+    button.disabled = true;
+    message.textContent = "Removing your picture...";
+
+    try {
+        const { error: deleteError } = await supabaseClient.storage
+            .from("student-avatars")
+            .remove([currentAvatarPath]);
+
+        if (deleteError) throw deleteError;
+
+        const { error: updateError } = await supabaseClient.auth.updateUser({
+            data: {
+                avatar_url: null,
+                avatar_path: null
+            }
+        });
+
+        if (updateError) throw updateError;
+
+        currentStudent.user_metadata.avatar_url = null;
+        currentStudent.user_metadata.avatar_path = null;
+        currentAvatarPath = null;
+
+        displayAvatar(null);
+
+        document.getElementById("avatarInput").value = "";
+
+        message.textContent = "Your profile picture has been removed.";
+
+    } catch (error) {
+        message.textContent = "Could not remove picture: " + error.message;
+    } finally {
+        button.disabled = false;
+    }
+}
+
+document.getElementById("uploadAvatarBtn")
+    .addEventListener("click", uploadAvatar);
+
+document.getElementById("removeAvatarBtn")
+    .addEventListener("click", removeAvatar);
+
+document.getElementById("avatarInput").addEventListener("change", event => {
+    const file = event.target.files[0];
+    const message = document.getElementById("avatarMessage");
+
+    if (!file) return;
+
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+        file.size > 2 * 1024 * 1024) {
+        message.textContent =
+            "Choose a JPG, PNG or WebP image up to 2 MB.";
+        event.target.value = "";
+        return;
+    }
+
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+
+    previewUrl = URL.createObjectURL(file);
+    displayAvatar(previewUrl);
+
+    message.textContent =
+        "Preview ready. Click Save / Change Picture to upload.";
+});
+
+document.getElementById("refreshResultsBtn")
+    .addEventListener("click", async () => {
+        await Promise.all([
+            loadQuizResults(),
+            loadCourseProgress()
+        ]);
+    });
+
+document.getElementById("logoutLink").addEventListener("click", async event => {
+    event.preventDefault();
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        alert("Logout failed: " + error.message);
+        return;
+    }
+
+    window.location.href = "login.html";
+});
+
+protectDashboard();
+</script>
+
+</body>
+</html>

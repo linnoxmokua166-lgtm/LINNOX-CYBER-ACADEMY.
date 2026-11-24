@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINNOX CYBER ACADEMY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">LINNOX <span>CYBER</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#learn">Learn</a>
+            <a href="#terminal">Practice Lab</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <p class="tagline">YOUR JOURNEY INTO CYBERSECURITY STARTS HERE</p>
+
+        <h1>WELCOME TO THE WORLD OF <span>CYBERSECURITY</span></h1>
+
+        <p>
+            Learn ethical hacking, cybersecurity
+            and digital protection.
+        </p>
+
+        <a href="#learn" class="main-button">START LEARNING</a>
+    </section>
+
+    <section class="learning" id="learn">
+        <h2>EXPLORE OUR ACADEMY</h2>
+
+        <div class="services">
+
+            <div class="card">
+                <h3>Ethical Hacking</h3>
+                <p>Understand how security professionals
+                identify and prevent vulnerabilities.</p>
+            </div>
+
+            <div class="card">
+                <h3>Practice Lab</h3>
+                <p>Explore safe simulated cybersecurity
+                challenges.</p>
+            </div>
+
+            <div class="card">
+                <h3>Cybersecurity</h3>
+                <p>Learn how to protect computers,
+                networks and digital information.</p>
+            </div>
+
+            <div class="card">
+                <h3>Training</h3>
+                <p>Build your cybersecurity knowledge
+                step by step.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="terminal-section" id="terminal">
+        <h2>CYBER LEARNING TERMINAL</h2>
+        <p>Try our educational command simulator.</p>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                LINNOX EDUCATIONAL TERMINAL
+                <span>● ● ●</span>
+            </div>
+
+            <div id="output">
+                <p>Welcome to LINNOX CYBER ACADEMY.</p>
+                <p>Type <span>help</span> to see available commands.</p>
+            </div>
+
+            <div class="terminal-input">
+                <span>student@linnox:~$</span>
+                <input
+                    type="text"
+                    id="command"
+                    placeholder="Enter command..."
+                    autocomplete="off"
+                >
+                <button onclick="runCommand()">RUN</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>LINNOX <span>CYBER</span> ACADEMY</h3>
+        <p>Learn. Practice. Protect.</p>
+        <p>© 2026 LINNOX CYBER ACADEMY. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

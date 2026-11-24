@@ -1,0 +1,301 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050b08;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    background: #08140e;
+    border-right: 1px solid #00ff66;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 45px;
+}
+
+.sidebar h2 span {
+    color: #00ff66;
+}
+
+.menu-title {
+    color: #687d70;
+    font-size: 11px;
+    margin: 20px 0 15px;
+    letter-spacing: 2px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 14px;
+    margin-bottom: 8px;
+    color: #b5c5ba;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #103321;
+    color: #00ff66;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 30px;
+    color: #00ff66;
+    font-size: 13px;
+}
+
+.sidebar-bottom small {
+    display: block;
+    color: #718078;
+    margin-top: 8px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 35px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 45px;
+    gap: 20px;
+}
+
+.topbar h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.topbar p {
+    color: #87988d;
+}
+
+.student {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    background: #00ff66;
+    color: #001a0a;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* OVERVIEW */
+
+#overview h2,
+.courses h2,
+.progress-section h2,
+.lab-section h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    color: #00ff66;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    background: #0b2116;
+    border: 1px solid #183b28;
+    padding: 25px 18px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    border-color: #00ff66;
+    transform: translateY(-4px);
+}
+
+.stat-card p {
+    color: #a5b7aa;
+    font-size: 13px;
+}
+
+.stat-card h3 {
+    color: #00ff66;
+    font-size: 30px;
+    margin: 18px 0;
+}
+
+.stat-card small {
+    color: #718078;
+}
+
+/* COURSES */
+
+.courses {
+    margin-top: 50px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.course-card {
+    background: #0b2116;
+    border: 1px solid #183b28;
+    border-radius: 10px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.course-card:hover {
+    border-color: #00ff66;
+    transform: translateY(-4px);
+}
+
+.course-card span {
+    color: #00ff66;
+    font-size: 13px;
+}
+
+.course-card h3 {
+    margin: 18px 0;
+    font-size: 19px;
+}
+
+.course-card p {
+    color: #a5b7aa;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+button {
+    background: #00ff66;
+    color: #001a0a;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: white;
+}
+
+/* PROGRESS */
+
+.progress-section,
+.lab-section {
+    margin-top: 45px;
+    padding: 30px;
+    background: #0b2116;
+    border: 1px solid #183b28;
+    border-radius: 10px;
+}
+
+.progress-section p,
+.lab-section p {
+    color: #a5b7aa;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #1b3023;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar div {
+    width: 0%;
+    height: 100%;
+    background: #00ff66;
+}
+
+.progress-section small {
+    color: #00ff66;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #718078;
+    padding: 45px 10px 15px;
+    margin-top: 30px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 1000px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar-bottom {
+        margin-top: 20px;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .course-grid,
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+}
